@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+*.tmp
+.DS_Store
+.vscode/
+pipeline_log.txt
+temp.md
+*.log

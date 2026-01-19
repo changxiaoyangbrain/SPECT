@@ -52,9 +52,11 @@
 
 项目已配置自动激活虚拟环境功能，打开项目时会自动激活：
 
-- **VS Code **：已自动配置，打开项目后集成终端会自动激活虚拟环境
-- **终端用户**：可以使用 `direnv` 实现自动激活（详见 `docs/自动激活虚拟环境指南.md`）
-- **手动激活**：运行 `source scripts/activate.sh`
+- **VS Code/Cursor**：已自动配置（`.vscode/settings.json`），打开项目后集成终端会自动激活虚拟环境
+- **终端用户（direnv）**：项目包含 `.envrc` 配置文件，使用 `direnv` 可实现自动激活（详见 `docs/自动激活虚拟环境指南.md`）
+- **手动激活**：运行 `source scripts/activate.sh` 或 `source .venv/bin/activate`
+
+> **提示**：首次使用 `direnv` 需要运行 `direnv allow` 允许 `.envrc` 文件执行。
 
 详细说明请查看：[自动激活虚拟环境指南.md](docs/自动激活虚拟环境指南.md)
 
@@ -132,14 +134,21 @@ SPECT/
 │   └── check_paths.py        # 路径检查脚本
 │
 ├── tests/                    # 🧪 测试目录
+│   ├── __init__.py           # 测试模块初始化
 │   ├── test_data_loader.py   # 数据加载测试
 │   ├── test_system_matrix.py # 系统矩阵测试
 │   ├── test_reconstruction.py # 重建算法测试
-│   └── test_evaluate.py      # 评估模块测试
+│   ├── test_evaluate.py      # 评估模块测试
+│   └── README.md             # 测试说明文档
 │
 ├── pictures/                 # 🖼️ 图片输出目录
 ├── reports/                   # 📄 报告输出目录
-└── materials/                # 📚 材料目录
+├── materials/                # 📚 材料目录（不提交到 Git）
+├── docs/                     # 📖 文档目录（不提交到 Git）
+├── .envrc                    # direnv 配置文件
+├── .gitignore                # Git 忽略规则
+└── .vscode/                  # VS Code 配置（部分文件）
+    └── settings.json          # Python 解释器配置
 ```
 
 ## 代码结构说明
@@ -268,6 +277,30 @@ A: 项目已按功能模块组织，核心代码在 `spect/` 包中，工具脚�
 ```bash
 python scripts/check_paths.py
 ```
+
+## Git 版本控制
+
+### 提交的文件
+
+以下文件和目录会被提交到 Git：
+- 核心代码：`spect/`, `main_pipeline.py`, `tools/`, `scripts/`
+- 测试文件：`tests/`
+- 输入数据：`data/input/`（投影数据和轨道参数）
+- 参考数据：`data/reference/`（用于评估的参考结果）
+- 配置文件：`requirements.txt`, `.gitignore`, `.envrc`, `.vscode/settings.json`
+- 文档：`README.md`
+
+### 不提交的文件
+
+以下文件和目录不会被提交（已在 `.gitignore` 中配置）：
+- 虚拟环境：`.venv/`, `venv/`, `env/`
+- 输出文件：`outputs/`（程序运行生成的文件）
+- 文档目录：`docs/`（内部文档）
+- 材料目录：`materials/`（课程材料）
+- 临时文件：`*.pyc`, `__pycache__/`, `*.tmp`, `*.log`
+- 系统文件：`.DS_Store`, `.idea/`
+
+> **注意**：`outputs/` 目录中的文件是程序运行后生成的，不应提交到版本控制。如果需要保存特定版本的结果，请使用其他方式（如标签或发布）。
 
 ## 许可证
 

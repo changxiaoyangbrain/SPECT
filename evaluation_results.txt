@@ -1,9 +1,0 @@
-Evaluation Results
-==================
-My Recon vs Ref Recon:
-  RMSE: 0.209455
-  SSIM: 0.537552
-
-My Filtered vs Ref Filtered:
-  RMSE: 0.128543
-  SSIM: 0.329922

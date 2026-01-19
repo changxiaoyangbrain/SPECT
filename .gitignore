@@ -1,9 +1,43 @@
+# 虚拟环境目录（确保项目环境隔离）
 venv/
+.venv/
+env/
+.env/
+
+# 输出目录（程序生成的文件）
+outputs/
+# 注意：data/ 目录中的输入数据应该被提交
+# 但 outputs/ 目录中的生成文件应该被忽略
+
+# 文档目录（不提交）
+docs/
+
+# 根目录中的某些 .md 文档（不提交，但 README.md 需要提交）
+AGENTS.md
+CLAUDE.md
+
+# Python 缓存文件
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# 临时文件
 *.tmp
-.DS_Store
-.vscode/
+*.log
 pipeline_log.txt
 temp.md
-*.log
+
+# 系统文件
+.DS_Store
+.vscode/launch.json
+.vscode/tasks.json
+.idea/
+
+# 注意: .vscode/settings.json 应该被提交（项目配置）
+
+# 其他
+*.swp
+*.swo
+*~

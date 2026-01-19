@@ -12,6 +12,9 @@ outputs/
 # 文档目录（不提交）
 docs/
 
+# 材料目录（不提交）
+materials/
+
 # 根目录中的某些 .md 文档（不提交，但 README.md 需要提交）
 AGENTS.md
 CLAUDE.md
